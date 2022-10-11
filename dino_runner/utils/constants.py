@@ -1,3 +1,4 @@
+from webbrowser import BackgroundBrowser
 import pygame
 import os
 
@@ -68,5 +69,5 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
-
+BACKGROUND = pygame.image.load(os.path.join(IMG_DIR, 'Other/5.png'))
 DEFAULT_TYPE = "default"

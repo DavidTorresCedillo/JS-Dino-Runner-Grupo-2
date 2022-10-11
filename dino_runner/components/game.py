@@ -1,5 +1,6 @@
 import pygame
-
+from dino_runner.components.dinosaur import Dinosaur
+from dino_runner.components.background import Backgroun
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 
 
@@ -15,6 +16,9 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
 
+        self.player = Dinosaur()
+        self.fondo=Backgroun()
+    
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
@@ -30,12 +34,16 @@ class Game:
                 self.playing = False
 
     def update(self):
-        pass
+        user_input= pygame.key.get_pressed()
+        self.player.update(user_input)
+        #self.fondo.update()
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
+        #self.fondo.draw(self.screen)
         self.draw_background()
+        self.player.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
