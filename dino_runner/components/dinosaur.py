@@ -16,7 +16,6 @@ class Dinosaur(Sprite):
         self.dino_rect.x=self.X_POS
         self.dino_rect.y=self.Y_POS
         self.stop_index=0
-
         self.jump_velocity = self.JUMP_VELOCITY
 
         self.dino_running = True
