@@ -57,8 +57,6 @@ class Dinosaur(Sprite):
         self.image = JUMPING
         self.dino_rect.y -= self.jump_velocity * 4
         self.jump_velocity -= 0.8
-        print("Y Pos:", self.dino_rect.y)
-        print("Velocity:", self.jump_velocity)
         if self.jump_velocity < -self.JUMP_VELOCITY:
             self.dino_jumping = False
             self.dino_rect.y = self.Y_POS
