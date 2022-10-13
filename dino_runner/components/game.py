@@ -26,6 +26,7 @@ class Game:
 
         self.running=False
         self.score= Score()
+        
         self.death_count=0
     
     def execute(self):
@@ -82,8 +83,7 @@ class Game:
         #pintar el fondo 
         self.screen.fill((56, 54, 54))
         #mostrar un texto
-      
-
+        
         if self.death_count<=0:
             fond = pygame.font.Font(FONT_STYLE,30)
             text = fond.render("Press any key to start",True,(0,0,0))  
@@ -92,13 +92,12 @@ class Game:
             self.screen.blit(text,text_rect)
             type_Dino=DINO_START
         else:
+            #imprimir el restart y las muertes
             self.show_menu_restart()
+            #imprimir el score
+            self.score.score_end(self.screen,self.pos_center_Y)
             type_Dino=DINO_DEAD
-
-
-             
-           
-
+            self.pos_center_Y=SCREEN_HEIGHT/2
         #mostrar una imagen como logo
         dino_rect= type_Dino.get_rect()
         dino_rect.center=(self.pos_center_x,self.pos_center_Y-80)
@@ -118,24 +117,18 @@ class Game:
     def on_death(self):
         self.playing=False
         self.death_count+=1
-
-        print("he muerte:",self.death_count)
     
     def show_menu_restart(self):
         contador=0
-        positionY=self.pos_center_Y
         fond = pygame.font.Font(FONT_STYLE,30)
-        txt = ["Press any key to restart",f"Muertes: {self.death_count}",f"puntaje:"]
+        txt = ["Press any key to restart",f"Muertes: {self.death_count}"]
         while contador<len(txt):
             text = fond.render(txt[contador],True,(0,0,0)) 
             text_rect = text.get_rect()
-            text_rect.center = (self.pos_center_x,positionY)
+            text_rect.center = (self.pos_center_x,self.pos_center_Y)
+            self.pos_center_Y+=40
             self.screen.blit(text,text_rect)
-            positionY+=40
             contador+=1
-        #mostrar mensaje de reinicio  
-        #mostrar puntaje obtenido
-        #mostrarr numero de muertes 
 
     def reset_game_speed(self):
         self.game_speed = 20
