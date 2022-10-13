@@ -2,7 +2,7 @@ from random import randint
 from .obstacle import Obstacle
 
 
-class CactusG(Obstacle):
+class CactusLarge(Obstacle):
     def __init__(self,images):
         type = randint(0,2)
         super().__init__(images,type)
