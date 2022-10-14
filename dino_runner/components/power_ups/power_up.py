@@ -9,7 +9,6 @@ class PowerUp(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x= SCREEN_WIDTH + randint (800,1000)
         self.rect.y =randint(150,250)
-
         self.star_time=0
         self.duration = randint(3,5)
 

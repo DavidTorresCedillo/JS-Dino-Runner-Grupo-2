@@ -1,11 +1,12 @@
 import pygame
+
 from pickle import TRUE
 from pygame.sprite import Sprite
-from dino_runner.utils.constants import DEFAULT_TYPE, DUCKING, DUCKING_SHIELD, JUMPING, JUMPING_SHIELD, RUNNING, RUNNING_SHIELD, SHIELD_TYPE
+from dino_runner.utils.constants import DEFAULT_TYPE, DUCKING, DUCKING_HAMMER, DUCKING_SHIELD, HAMMER_TYPE, JUMPING, JUMPING_HAMMER, JUMPING_SHIELD, RUNNING, RUNNING_HAMMER, RUNNING_SHIELD, SHIELD_TYPE
 
-DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE:DUCKING_SHIELD}
-JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE:JUMPING_SHIELD}
-RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE:RUNNING_SHIELD}
+DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE:DUCKING_SHIELD,HAMMER_TYPE:DUCKING_HAMMER}
+JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE:JUMPING_SHIELD,HAMMER_TYPE:JUMPING_HAMMER}
+RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE:RUNNING_SHIELD,HAMMER_TYPE:RUNNING_HAMMER}
 
 class Dinosaur(Sprite):
     Y_POS = 310
@@ -21,7 +22,7 @@ class Dinosaur(Sprite):
         self.dino_rect.y=self.Y_POS
         self.stop_index=0
         self.jump_velocity = self.JUMP_VELOCITY
-
+       
         self.dino_running = True
         self.dino_jumping = False
         self.dino_duck = False
@@ -41,6 +42,7 @@ class Dinosaur(Sprite):
             self.dino_jumping= True
             self.dino_duck= False
             self.dino_running=False
+            
         elif user_input[pygame.K_DOWN] and not self.dino_jumping:
             self.dino_jumping= False
             self.dino_duck= True

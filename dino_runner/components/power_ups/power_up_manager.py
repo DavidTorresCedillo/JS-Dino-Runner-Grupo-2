@@ -1,5 +1,6 @@
 from random import randint
 from .shield import Shield
+from .hammer import Hammer
 import pygame
 
 
@@ -10,8 +11,15 @@ class PowerUpManager:
 
     def generate_power_up(self,score):
         if len(self.power_ups)==0 and self.when_appears == score:
-            self.when_appears += randint(200,300)
-            self.power_ups.append(Shield())
+            
+            aleatorio=randint(0,2)
+            if aleatorio==0:
+                self.when_appears += randint(200,300)
+                self.power_ups.append(Shield())
+            elif aleatorio==1:
+                self.when_appears += randint(200,300)
+                self.power_ups.append(Hammer())
+            
 
     def update(self,game_speed,player,score):
         self.generate_power_up(score)
