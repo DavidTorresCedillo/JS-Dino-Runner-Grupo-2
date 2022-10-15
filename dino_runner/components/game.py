@@ -8,7 +8,7 @@ from dino_runner.components.score import Score
 from dino_runner.components.background import Backgroun
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
-from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, TITLE, FPS
+from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUNDGAMEOVER, TITLE, FPS
 
 
 class Game:
@@ -31,6 +31,7 @@ class Game:
         self.colorcode=255
         self.conta=0
         self.luz="dia"
+        self.soundgameover=pygame.mixer.Sound(SOUNDGAMEOVER)
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -108,7 +109,7 @@ class Game:
         self.player.draw(self.screen)
         if not has_hammer:
             self.obstacle_manager.draw(self.screen)
-            
+
         self.score.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         self.draw_active_power_up()
@@ -141,6 +142,7 @@ class Game:
         elif self.death_count==3:
             self.print_all.printall(self.screen,1,self.pos_center_x-200,self.pos_center_Y,GAME_OVER)
             self.print_all.printall(self.screen,0,self.pos_center_x,self.pos_center_Y+50,self.fond.render("Press any key to exit",True,(0,0,0)))
+            self.soundgameover.play()
         else:
             #imprimir el restart y las muertes
             self.show_menu_restart()
