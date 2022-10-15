@@ -8,7 +8,7 @@ from dino_runner.components.score import Score
 from dino_runner.components.background import Backgroun
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
-from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUNDBACK, SOUNDGAMEOVER, TITLE, FPS
+from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUNDBACK, SOUNDDEATH1, SOUNDGAMEOVER, TITLE, FPS
 
 
 class Game:
@@ -32,6 +32,7 @@ class Game:
         self.conta=0
         self.luz="dia"
         self.soundgameover=pygame.mixer.Sound(SOUNDGAMEOVER)
+        self.sounddeath=pygame.mixer.Sound(SOUNDDEATH1)
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -62,6 +63,7 @@ class Game:
         self.luz="dia"
         self.power_up_manager.reset_power_ups()
         pygame.mixer.music.load(SOUNDBACK)
+        self.sounddeath.stop()
         pygame.mixer.music.play(100)
         while self.playing:
             self.events()
@@ -180,6 +182,7 @@ class Game:
             pygame.time.delay(500)
             self.playing=False
             self.death_count+=1
+            self.sounddeath.play()
         return #has_shield
     
     #imprimir menu de restart
