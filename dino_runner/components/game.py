@@ -8,7 +8,7 @@ from dino_runner.components.score import Score
 from dino_runner.components.background import Backgroun
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
-from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUNDGAMEOVER, TITLE, FPS
+from dino_runner.utils.constants import GAME_OVER,BG, HAMMER_TYPE,SMALL_HEART,CLOUD,RESET, DEFAULT_TYPE, DINO_START,DINO_DEAD, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUNDBACK, SOUNDGAMEOVER, TITLE, FPS
 
 
 class Game:
@@ -61,6 +61,8 @@ class Game:
         self.conta=0
         self.luz="dia"
         self.power_up_manager.reset_power_ups()
+        pygame.mixer.music.load(SOUNDBACK)
+        pygame.mixer.music.play(100)
         while self.playing:
             self.events()
             self.update()
@@ -142,9 +144,11 @@ class Game:
         elif self.death_count==3:
             self.print_all.printall(self.screen,1,self.pos_center_x-200,self.pos_center_Y,GAME_OVER)
             self.print_all.printall(self.screen,0,self.pos_center_x,self.pos_center_Y+50,self.fond.render("Press any key to exit",True,(0,0,0)))
+            pygame.mixer.music.stop()
             self.soundgameover.play()
         else:
             #imprimir el restart y las muertes
+            pygame.mixer.music.stop()
             self.show_menu_restart()
             type_Dino=DINO_DEAD
             self.pos_center_Y=SCREEN_HEIGHT/2

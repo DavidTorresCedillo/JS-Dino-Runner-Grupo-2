@@ -66,6 +66,9 @@ BIRD = [
 
 SOUNDJUMP=os.path.join(IMG_DIR, 'sounds/jump.ogg')
 SOUNDGAMEOVER=os.path.join(IMG_DIR, 'sounds/gameover.ogg')
+SOUNDPOWERUP=os.path.join(IMG_DIR, 'sounds/powerup.ogg')
+SOUNDBACK=os.path.join(IMG_DIR, 'sounds/backsound.mp3')
+SOUNDDEATH1=os.path.join(IMG_DIR, 'sounds/backsound.mp3')
 
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
